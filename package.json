@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/thechutrain/cli-hangman#readme",
   "dependencies": {
+    "clear": "0.0.1",
+    "figlet": "^1.2.0",
     "inquirer": "^3.0.1",
     "request": "^2.79.0",
     "unirest": "^0.5.1"
