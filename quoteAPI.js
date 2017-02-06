@@ -1,7 +1,7 @@
 var unirest = require("unirest");
 var private = require("./private");
 
-function getRandomQuote(){
+exports.getRandomQuote = function(){
     return new Promise(function(resolve, reject){
         unirest.post("https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous")
         .header("X-Mashape-Key", private.quote_API_KEY)
@@ -27,10 +27,10 @@ function getRandomQuote(){
 
 // TESTING!
 // console.log(private.quote_API_KEY);
-getRandomQuote().then(
-    function(response){
-    console.log("---- from a fulfilled promise -----");
-    console.log(response);
-    }, function(err){
-        console.log(err);
-    })
+// getRandomQuote().then(
+//     function(response){
+//     console.log("---- from a fulfilled promise -----");
+//     console.log(response);
+//     }, function(err){
+//         console.log(err);
+//     })
