@@ -1,8 +1,10 @@
 function Letter(ltr){
-    this.show = false;
-    this.letter = ltr.toString();
+    this.display = false;
+    this.letter = ltr.toString().toUpperCase();
 }
 
 Letter.prototype.show = function(){
-    this.show = true;
+    this.display = true;
 }
+
+module.exports = Letter;
