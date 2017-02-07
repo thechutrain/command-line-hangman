@@ -7,6 +7,7 @@ var Letter = require("./Letter");
 function Word(_author){
     this.author = _author;
     this.letterArray = []; // array containing letter objects
+    this.numGuess = 0;
     this.init();
 }
 
@@ -30,6 +31,7 @@ Word.prototype.show = function(){
 
 Word.prototype.hasLetter = function(ltr){
     var correctGuess = false;
+    this.numGuess +=1;
 
     // loop through letterArray
     this.letterArray.forEach(function(ltrObj){
@@ -41,13 +43,28 @@ Word.prototype.hasLetter = function(ltr){
     return correctGuess;
 }
 
+Word.prototype.solved = function(){
+    var solved = true;
+    this.letterArray.forEach(function(ltrObj){
+        if (ltrObj.display == false) solved = false;
+    })
+    return solved;
+}
+
 // TESTING
 var test = new Word("heLLo");
 test.show();
 console.log(test.hasLetter("l"));
 test.show();
-console.log(test.hasLetter("l"));
+// console.log(test.hasLetter("l"));
+console.log(`Has this word been solved? ${test.solved()}`);
+console.log(test.hasLetter("h"));
+console.log(`Has this word been solved? ${test.solved()}`);
+console.log(test.hasLetter("e"));
+console.log(test.hasLetter("o"));
+console.log(`Has this word been solved? ${test.solved()}`);
 test.show();
+
 
 
 //////////////////////////////////////////////
