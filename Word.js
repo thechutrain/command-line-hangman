@@ -9,6 +9,7 @@ function Word(word, show){
     this.init();
 }
 
+// methods to get properties of word
 Word.prototype.init = function(){
     if (this.show){
         this.wordArray = this.word.split("");
@@ -21,6 +22,8 @@ Word.prototype.init = function(){
     // console.log(`Hello I "${this.word}" was created!`);
 }
 
+
+// DEBUGGIN METHODS
 Word.prototype.toString = function(){
     console.log(`Word: ${this.word}`);
     console.log(`Show: ${this.show}`);
@@ -29,6 +32,7 @@ Word.prototype.toString = function(){
     }
 }
 
+// EXPORTING WORD OBJECT
 module.exports = Word;
 
 // var test = new Word("HELLO", true);
