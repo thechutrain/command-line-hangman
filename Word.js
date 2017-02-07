@@ -51,19 +51,22 @@ Word.prototype.solved = function(){
     return solved;
 }
 
+// Export!
+module.exports = Word;
+
 // TESTING
-var test = new Word("heLLo");
-test.show();
-console.log(test.hasLetter("l"));
-test.show();
+// var test = new Word("heLLo");
+// test.show();
 // console.log(test.hasLetter("l"));
-console.log(`Has this word been solved? ${test.solved()}`);
-console.log(test.hasLetter("h"));
-console.log(`Has this word been solved? ${test.solved()}`);
-console.log(test.hasLetter("e"));
-console.log(test.hasLetter("o"));
-console.log(`Has this word been solved? ${test.solved()}`);
-test.show();
+// test.show();
+// // console.log(test.hasLetter("l"));
+// console.log(`Has this word been solved? ${test.solved()}`);
+// console.log(test.hasLetter("h"));
+// console.log(`Has this word been solved? ${test.solved()}`);
+// console.log(test.hasLetter("e"));
+// console.log(test.hasLetter("o"));
+// console.log(`Has this word been solved? ${test.solved()}`);
+// test.show();
 
 
 
