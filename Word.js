@@ -46,8 +46,10 @@ Word.prototype.hasLetter = function(ltr){
 Word.prototype.solved = function(){
     var solved = true;
     this.letterArray.forEach(function(ltrObj){
-        if (ltrObj.display == false) solved = false;
-    })
+        if (ltrObj.display == false) {
+          solved = false;
+        }
+    });
     return solved;
 }
 

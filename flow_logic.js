@@ -10,10 +10,6 @@ var Word = require("./Word");
 // Start the game
 playGame(true);
 
-// Global variables -- any way to store them passed into promise?
-var quoteObj = quoteObj;
-var currentWord = "testing 1234";
-
 
 // FLOW PART 1) Ask user if they want to play the game
 function playGame(firstTimeBool){
@@ -48,15 +44,11 @@ function playGame(firstTimeBool){
 
 // FLOW PART 2) Ask user what letter to guess
 function guessLetter(againBool, quoteObj){
-  console.log(`From guessLetter - quote: ${quoteObj.quote}`);
-  quoteObj.word.show();
-  console.log("---------------------");
-  // console.log(`From guessLetter - word: ${quoteObj.word.show()}`);
-  // // testing
-  // var correctLetter = "J";
-  // console.log(quoteObj);
-  // console.log(currentWord.wordArray);
-
+  if (!againBool){
+    console.log(`Who said ... \n"${quoteObj.quote}"`);
+    quoteObj.word.show();
+  }
+  
   // check if its the first time or repeated question?
   // TODO - add a validator to the question!
   if(againBool){
@@ -68,26 +60,26 @@ function guessLetter(againBool, quoteObj){
   inquirer.prompt(question)
   .then(function(response){
     clear(); 
-    // Debugging
-    console.log(quoteObj.quote);
-    // quoteObj.quote & quoteObj.word
+    console.log(`Who said ... \n"${quoteObj.quote}"`);
 
     // 1. check if the letter is in word
     var found = quoteObj.word.hasLetter(response.letter);
     if (found){
-      console.log("Found a " + response.letter);
       quoteObj.word.show();
+      console.log(`Found a(n) "${response.letter}"`);
     } else {
-      console.log("Did NOT find a " + response.letter);
       quoteObj.word.show();
-    }
-      // yes --> tell user correctLetter
-      // no --> tell user they are wrong
+      console.log(`Did not find a(n) "${response.letter}"`);
+    };
 
     // 2. check if user has won
-      // no --> then recusion
-      // yes --> call play game
-
+    if (quoteObj.word.solved()){
+          console.log(figlet.textSync("You WON!!!"));
+          console.log(`Took you ${quoteObj.word.numGuess} guess(es)`);
+          playGame(false);
+    } else {
+      guessLetter(true, quoteObj);
+    }
   }) // .then()
 }; // closes guessLetter()
 
