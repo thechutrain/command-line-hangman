@@ -4,3 +4,6 @@
 
 ## Features
 - mashApe API for random quote generator
+
+## Issues
+- allows for authors with "periods" in the name
