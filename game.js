@@ -83,7 +83,8 @@ function guessLetter(againBool, quoteObj){
     // 2. check if user has won
     if (quoteObj.word.solved()){
           console.log(figlet.textSync("You WON!!!"));
-          console.log(`Took you ${quoteObj.word.numGuess} guess(es)`);
+          // console.log(`Took you ${quoteObj.word.numGuess} guess(es)`);
+          console.log(`You had ${quoteObj.word.incorrectGuess} incorrect guess(es)`);
           playGame(false);
     } else {
       guessLetter(true, quoteObj);
