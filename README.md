@@ -7,3 +7,5 @@
 
 ## Issues
 - allows for authors with "periods" in the name
+- check that authors are valid letters a-z
+- add validator to inquirer
