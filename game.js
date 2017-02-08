@@ -6,13 +6,6 @@ var clear = require('clear');
 var getQuote = require("./lib/quoteAPI");
 var printColor = require("./lib/printColor");
 
-// Check to see if the environmental key 
-if (process.argv[2] !== undefined){
-  // console.log("undefined");
-  process.env.KEY = process.argv[2];
-}
-
-
 // Start the game
 playGame(true);
 
@@ -42,7 +35,7 @@ function playGame(firstTimeBool){
       getQuote().then(quoteObj => {
         // take the quoteObje --> pass to function that will ask user to guess a letter
         guessLetter(false, quoteObj);
-      });
+      }).catch(err => {console.log(err)});
     } else {
       // They don't want to play :(
       clear();
