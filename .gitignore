@@ -1,3 +1,4 @@
 node_modules
 private.js
 settings.json
+.DS_Store

@@ -2,7 +2,7 @@
 > a command line interface hangman game
 
 ## Demo
-![]("images/hangmanDemo.gif")
+![](images/hangmanDemo.gif)
 
 ## Usage
  *You must make sure that you have your own API key.
