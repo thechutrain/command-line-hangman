@@ -1,10 +1,10 @@
 var inquirer = require("inquirer");
 var figlet = require("figlet");
 var clear = require('clear');
-var chalk = require('chalk');
 
 // my modules
 var getQuote = require("./lib/quoteAPI");
+var printColor = require("./lib/printColor");
 
 // Start the game
 playGame(true);
@@ -72,9 +72,11 @@ function guessLetter(againBool, quoteObj){
     var found = quoteObj.word.hasLetter(input.letter);
     if (found){
       quoteObj.word.show();
+      console.log(printColor.success("Nice guess!"));
       console.log(`Found a(n) "${input.letter}"`);
     } else {
       quoteObj.word.show();
+      console.log(printColor.wrong("Nope."));
       console.log(`Did not find a(n) "${input.letter}"`);
     };
 
