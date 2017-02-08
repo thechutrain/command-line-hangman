@@ -6,6 +6,13 @@ var clear = require('clear');
 var getQuote = require("./lib/quoteAPI");
 var printColor = require("./lib/printColor");
 
+// Check to see if the environmental key 
+if (process.argv[2] !== undefined){
+  // console.log("undefined");
+  process.env.KEY = process.argv[2];
+}
+
+
 // Start the game
 playGame(true);
 
