@@ -17,6 +17,7 @@ playGame(true);
 function playGame(firstTimeBool){
   if (firstTimeBool){
     // Welcome message
+    clear();
     console.log(figlet.textSync("Welcome!"));
     question = { message: "Want to play hangman?", type: "confirm", name: "play"};
   } 
@@ -66,7 +67,7 @@ function guessLetter(againBool, quoteObj){
   .then(function(input){
     clear(); 
     console.log(`Who said ... \n"${quoteObj.quote}"`);
-    console.log(quoteObj.word.author); // TAKE OUT LATER
+    // console.log(quoteObj.word.author); // TAKE OUT LATER
 
     // 1. check if the letter is in word
     var found = quoteObj.word.hasLetter(input.letter);
