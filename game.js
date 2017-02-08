@@ -1,6 +1,7 @@
 var inquirer = require("inquirer");
 var figlet = require("figlet");
 var clear = require('clear');
+var chalk = require('chalk');
 
 // my modules
 var getQuote = require("./lib/quoteAPI");
