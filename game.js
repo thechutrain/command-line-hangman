@@ -56,16 +56,22 @@ function guessLetter(againBool, quoteObj){
     quoteObj.word.show();
   }
 
-  // TODO - add a validator to the question!
-  if(againBool){
-   question = { message: "Guess another letter: ", type: "input", name: "letter"};
-  } else {
-    question = { message: "Guess a letter: ", type: "input", name: "letter"};
-  }
+  // build the question
+  var question = {
+    type: "input", 
+    name: "letter", 
+    validate: function(value){
+      var regexp = /^[a-zA-Z]{1}$/gi;
+      return regexp.test(value) ? true : "please enter only one letter";
+    }
+  };
+  question["message"] = againBool ? "Guess another letter: " :  "Guess a letter: ";
+
   // prompt question!
   inquirer.prompt(question)
   .then(function(input){
     clear(); 
+    // console.log(input);
     console.log(`Who said ... \n"${quoteObj.quote}"`);
     // console.log(quoteObj.word.author); // TAKE OUT LATER
 
