@@ -17,7 +17,7 @@ playGame(true);
 function playGame(firstTimeBool){
   if (firstTimeBool){
     // Welcome message
-    console.log(figlet.textSync("Welcome to Hangman!"));
+    console.log(figlet.textSync("Welcome!"));
     question = { message: "Want to play hangman?", type: "confirm", name: "play"};
   } 
   else {
@@ -30,7 +30,7 @@ function playGame(firstTimeBool){
     if (input.play){
       // They want to play!
       clear()
-      console.log("So you want to play eh??? Get ready then!");
+      // console.log("So you want to play eh??? Get ready then!");
       getQuote().then(quoteObj => {
         // take the quoteObje --> pass to function that will ask user to guess a letter
         guessLetter(false, quoteObj);
@@ -38,8 +38,8 @@ function playGame(firstTimeBool){
     } else {
       // They don't want to play :(
       clear();
-      console.log("Okay, come back when you want to play!");
       console.log(figlet.textSync("Good bye"));
+      console.log("Okay, come back when you want to play!");
       }
   })
 }; 
