@@ -15,36 +15,28 @@ playGame(true);
 * NO --> say goodbye. 
 */
 function playGame(firstTimeBool){
+  question = { message: "Play another game?", type: "confirm", name: "play"};
   if (firstTimeBool){
-    // Welcome message
     clear();
     console.log(figlet.textSync("Welcome!"));
-    question = { message: "Want to play hangman?", type: "confirm", name: "play"};
+    question["message"] = "Want to play hangman?";
   } 
-  else {
-    question = { message: "Play another game?", type: "confirm", name: "play"};
-  }
   // inquirer prompt!    
   inquirer.prompt(question)
   .then(function(input){
-    // console.log(input);
     if (input.play){
-      // They want to play!
       clear()
-      // console.log("So you want to play eh??? Get ready then!");
       getQuote().then(quoteObj => {
-        // take the quoteObje --> pass to function that will ask user to guess a letter
         guessLetter(false, quoteObj);
-      }).catch(err => {console.log(err)});
+      })
+      .catch(err => {console.log(err)});
     } else {
-      // They don't want to play :(
       clear();
       console.log(figlet.textSync("Good bye"));
       console.log("Okay, come back when you want to play!");
-      }
-  })
+    }
+  }) // .then of inquirer
 }; 
-
 
 /******* Part II. ****** 
 * Keep asking the user to guess a letter, as long as they have not  
@@ -71,26 +63,30 @@ function guessLetter(againBool, quoteObj){
   inquirer.prompt(question)
   .then(function(input){
     clear(); 
-    // console.log(input);
+    var guess = input.letter;
     console.log(`Who said ... \n"${quoteObj.quote}"`);
-    // console.log(quoteObj.word.author); // TAKE OUT LATER
+    // if (process.env.DEBUG) console.log(quoteObj.word.author);
 
     // 1. check if the letter is in word
-    var found = quoteObj.word.hasLetter(input.letter);
-    if (found){
+    var result = quoteObj.word.hasLetter(input.letter);
+    var message;
+    if (result.correct){
       quoteObj.word.show();
-      console.log(printColor.success("Nice guess!"));
-      console.log(`Found a(n) "${input.letter}"`);
+      message = result.newGuess ?
+      `Nice! we found a(n) "${guess.toUpperCase()}"`:
+      `You already guessed a(n) "${guess.toUpperCase()}" - silly!`;
+      console.log(printColor.success(message));
     } else {
       quoteObj.word.show();
-      console.log(printColor.wrong("Nope."));
-      console.log(`Did not find a(n) "${input.letter}"`);
+      message = result.newGuess ? 
+        `Sorry, no "${guess.toUpperCase()}" found` : 
+        `Sorry bud, "${guess.toUpperCase()}" still isn't the right letter.`;
+      console.log(printColor.wrong(message));
     };
 
     // 2. check if user has won
     if (quoteObj.word.solved()){
           console.log(figlet.textSync("You WON!!!"));
-          // console.log(`Took you ${quoteObj.word.numGuess} guess(es)`);
           console.log(`You had ${quoteObj.word.incorrectGuess} incorrect guess(es)`);
           playGame(false);
     } else {
