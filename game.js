@@ -48,6 +48,9 @@ function guessLetter(againBool, quoteObj){
     quoteObj.word.show();
   }
 
+  if (quoteObj.word.incorrectLetters.length !== 0){
+    console.log(`Incorrect Letter(s): ${quoteObj.word.incorrectLetters.join(", ")}`);
+  }
   // build the question
   var question = {
     type: "input", 
@@ -89,6 +92,9 @@ function guessLetter(againBool, quoteObj){
           console.log(figlet.textSync("You WON!!!"));
           console.log(`You had ${quoteObj.word.incorrectGuess} incorrect guess(es)`);
           playGame(false);
+    } else if (quoteObj.word.incorrectGuess > 7){
+      console.log(`Out of Guesses! \n The answer was: ${quoteObj.word.showAll()}`);
+      playGame(false);
     } else {
       guessLetter(true, quoteObj);
     }
