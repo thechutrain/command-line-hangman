@@ -5,6 +5,8 @@ var clear = require('clear');
 // my modules
 var getQuote = require("./lib/quoteAPI");
 var printColor = require("./lib/printColor");
+var stats = require("./lib/gameStats");
+console.log(stats);
 
 // Start the game
 playGame(true);
@@ -34,6 +36,7 @@ function playGame(firstTimeBool){
       clear();
       console.log(figlet.textSync("Good bye"));
       console.log("Okay, come back when you want to play!");
+      console.dir(stats);
     }
   }) // .then of inquirer
 }; 
@@ -91,6 +94,7 @@ function guessLetter(againBool, quoteObj){
     if (quoteObj.word.solved()){
           console.log(figlet.textSync("You WON!!!"));
           console.log(`You had ${quoteObj.word.incorrectGuess} incorrect guess(es)`);
+          stats.addCorrect(quoteObj);
           playGame(false);
     } else if (quoteObj.word.incorrectGuess > 7){
       console.log(`Out of Guesses! \n The answer was: ${quoteObj.word.showAll()}`);
