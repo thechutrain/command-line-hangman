@@ -34,9 +34,10 @@ function playGame(firstTimeBool){
       .catch(err => {console.log(err)});
     } else {
       clear();
-      console.log(figlet.textSync("Good bye"));
-      console.log("Okay, come back when you want to play!");
-      console.dir(stats);
+      stats.showStats();
+      // console.log(figlet.textSync("Good bye"));
+      // console.log("Okay, come back when you want to play!");
+      // console.dir(stats);
     }
   }) // .then of inquirer
 }; 
