@@ -35,6 +35,7 @@ function playGame(firstTimeBool){
     } else {
       clear();
       stats.showStats();
+      // stats.showCorrect();
       // console.log(figlet.textSync("Good bye"));
       // console.log("Okay, come back when you want to play!");
       // console.dir(stats);
