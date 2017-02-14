@@ -7,7 +7,7 @@ author of that quote. You'll get to guess the author in a few
 guesses as possible. Enjoy!
 
 ## Demo
-![](images/hangmanDemo.gif)
+![](images/cliHangman.gif)
 
 ## Usage
  *You must make sure that you have your an API key to the mashApe random quote API.
